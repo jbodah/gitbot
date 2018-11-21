@@ -1,0 +1,8 @@
+#! /usr/bin/env ruby
+
+$: << 'lib'
+
+require 'gitbot'
+
+Gitbot.configure!(progname: File.basename(__FILE__))
+Gitbot.start!

@@ -1,0 +1,15 @@
+#! /usr/bin/env ruby
+
+Gitbot.configure!(progname: File.basename(__FILE__))
+config = Gitbot.config
+
+queue = ARGV
+until queue.empty?
+  case queue.shift
+  when "--pr"
+    pr_number = queue.shift
+    pr = config.github.pull_requests.get(config.github.user, config.github.repo, pr_number)
+  end
+end
+
+Gitbot::MergePullRequest.new.run(config, pr)
