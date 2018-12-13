@@ -4,6 +4,8 @@ require "gitbot/merge_pull_request"
 
 module Gitbot
   class << self
+    SLEEP = 30
+
     def configure!(progname:)
       require 'yaml'
       require 'github_api'
@@ -38,7 +40,7 @@ module Gitbot
         end
 
         config.logger.info { "Sleeping..." }
-        sleep 60
+        sleep SLEEP
       end
     end
 
